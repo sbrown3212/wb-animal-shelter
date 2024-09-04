@@ -32,3 +32,17 @@ class AnimalShelter {
     this.animals.splice(animalIndex, 1);
   }
 }
+
+const shelter = new AnimalShelter();
+
+for (const a of animalData) {
+  // QUESTION: why can't I deconstruct animal?
+  // const { name, species, color, hunger } = animal;
+
+  const hunger = a.hunger ? a.hunger : 50;
+  const animal = new Animal(a.name, a.species, a.color, hunger);
+
+  shelter.addAnimal(animal);
+}
+
+console.log(shelter.animals)
