@@ -1,18 +1,19 @@
 const animalData = require('./animal-data.json');
 
 class Animal {
-  constructor(name, species, color, hunger=50) {
+  constructor(name, species, color, hunger=50, food='food') {
     this.name = name;
     this.species = species;
     this.color = color;
     this.hunger = hunger;
+    this.food = food;
   }
 
   greet(greeting='Hi') {
     console.log(`${greeting}, I'm ${this.name} the ${this.species}`);
   }
 
-  feed(food='food') {
+  feed(food=this.food) {
     this.hunger -= 20;
     console.log(`Yum, I love ${food}`);
   }
@@ -20,8 +21,7 @@ class Animal {
 
 class Cat extends Animal {
   constructor(name, color, hunger=50) {
-    super(name, 'cat', color, hunger);
-    this.food = 'fish';
+    super(name, 'cat', color, hunger, 'fish');
   }
 
   greet(greeting='Meow') {
@@ -35,8 +35,7 @@ class Cat extends Animal {
 
 class Dog extends Animal {
   constructor(name, color, hunger=50) {
-    super(name, 'dog', color, hunger);
-    this.food = 'kibble';
+    super(name, 'dog', color, hunger, 'kibble');
   }
 
   greet(greeting='Woof') {
@@ -70,9 +69,6 @@ class AnimalShelter {
 const shelter = new AnimalShelter();
 
 for (const a of animalData) {
-  // QUESTION: why can't I deconstruct animal?
-  // const { name, species, color, hunger } = a;
-
   const hunger = a.hunger ? a.hunger : 50;
 
   let animal;
