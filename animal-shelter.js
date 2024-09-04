@@ -8,13 +8,43 @@ class Animal {
     this.hunger = hunger;
   }
 
-  greet() {
-    console.log(`Hi, I'm ${this.name} the ${this.species}`);
+  greet(greeting) {
+    console.log(`${greeting}, I'm ${this.name} the ${this.species}`);
   }
 
-  feed() {
+  feed(food='food') {
     this.hunger -= 20;
-    console.log(`Yum, I love food`);
+    console.log(`Yum, I love ${food}`);
+  }
+}
+
+class Cat extends Animal {
+  constructor(name, color, hunger=50) {
+    super(name, 'cat', color, hunger);
+    this.food = 'fish';
+  }
+
+  greet(greeting='Meow') {
+    super.greet(greeting);
+  }
+
+  feed(food=this.food) {
+    super.feed(food);
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, color, hunger=50) {
+    super(name, 'dog', color, hunger);
+    this.food = 'kibble';
+  }
+
+  greet(greeting='Woof') {
+    super.greet(greeting);
+  }
+
+  feed(food=this.food) {
+    super.feed(food)
   }
 }
 
@@ -50,4 +80,16 @@ for (const a of animalData) {
 }
 
 // console.log(shelter.animals);
-console.log(shelter.getAnimalsBySpecies('dog'));
+// console.log(shelter.getAnimalsBySpecies('dog'));
+
+// const nickels = new Cat('nickels', 'gray', 500)
+// console.log(nickels)
+// console.log(nickels.greet())
+// console.log(nickels.feed())
+// console.log(`Nickels' hunger:`, nickels.hunger)
+
+const spot = new Dog('Spot', 'brown', 90)
+console.log(spot)
+console.log(spot.greet())
+console.log(spot.feed())
+console.log(`Spot's hunger:`, spot.hunger)
