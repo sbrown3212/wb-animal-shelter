@@ -8,7 +8,7 @@ class Animal {
     this.hunger = hunger;
   }
 
-  greet(greeting) {
+  greet(greeting='Hi') {
     console.log(`${greeting}, I'm ${this.name} the ${this.species}`);
   }
 
@@ -71,10 +71,31 @@ const shelter = new AnimalShelter();
 
 for (const a of animalData) {
   // QUESTION: why can't I deconstruct animal?
-  // const { name, species, color, hunger } = animal;
+  // const { name, species, color, hunger } = a;
 
   const hunger = a.hunger ? a.hunger : 50;
-  const animal = new Animal(a.name, a.species, a.color, hunger);
+
+  let animal;
+
+  switch (a.species) {
+    case 'dog':
+      animal = new Dog(a.name, a.color, hunger);
+      break;
+    case 'cat':
+      animal = new Cat(a.name, a.color, hunger);
+      break;
+    default:
+      animal = new Animal(a.name, a.species, a.color, hunger);
+      break;
+  }
+  
+  // if (a.species === 'dog') {
+  //   animal = new Dog(a.name, a.color, hunger);
+  // } else if (a.species === 'cat') {
+  //   animal = new Cat(a.name, a.color, hunger);
+  // } else {
+  //   animal = new Animal(a.name, a.species, a.color, hunger);
+  // }
 
   shelter.addAnimal(animal);
 }
@@ -88,8 +109,13 @@ for (const a of animalData) {
 // console.log(nickels.feed())
 // console.log(`Nickels' hunger:`, nickels.hunger)
 
-const spot = new Dog('Spot', 'brown', 90)
-console.log(spot)
-console.log(spot.greet())
-console.log(spot.feed())
-console.log(`Spot's hunger:`, spot.hunger)
+// const spot = new Dog('Spot', 'brown', 90)
+// console.log(spot)
+// console.log(spot.greet())
+// console.log(spot.feed())
+// console.log(`Spot's hunger:`, spot.hunger)
+
+for (const a of shelter.animals) {
+  a.greet();
+  a.feed();
+}
