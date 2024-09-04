@@ -31,6 +31,10 @@ class AnimalShelter {
     const animalIndex = this.animals.indexOf(animal);
     this.animals.splice(animalIndex, 1);
   }
+
+  getAnimalsBySpecies(species) {
+    return this.animals.filter((animal) => animal.species === species)
+  }
 }
 
 const shelter = new AnimalShelter();
@@ -45,4 +49,5 @@ for (const a of animalData) {
   shelter.addAnimal(animal);
 }
 
-console.log(shelter.animals)
+// console.log(shelter.animals);
+console.log(shelter.getAnimalsBySpecies('dog'));
